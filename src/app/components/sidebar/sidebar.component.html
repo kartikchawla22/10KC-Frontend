@@ -1,0 +1,32 @@
+<mat-toolbar>
+    <button mat-icon-button *ngIf="drawer && drawer.mode === 'over'" (click)="drawer.toggle()">
+        <mat-icon *ngIf="!drawer.opened">
+            menu
+        </mat-icon>
+        <mat-icon *ngIf="drawer.opened">
+            close
+        </mat-icon>
+    </button>
+    <span class="name" [routerLink]="[ '/' ]">
+        <h2><span>10</span>K<span>Coffee</span>
+        </h2>
+    </span>
+</mat-toolbar>
+
+<mat-drawer-container autosize>
+    <mat-drawer #drawer>
+        <h4 class="name">Kartik Chawla</h4>
+        <mat-divider></mat-divider>
+        <button mat-button class="menu-button" [routerLink]="[ '/upload' ]" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}">
+            <mat-icon>cloud_upload</mat-icon>
+            <span>Upload Image</span>
+        </button>
+        <button mat-button class="menu-button" [routerLink]="[ '/showImages' ]" routerLinkActive="active">
+            <mat-icon>camera</mat-icon>
+            <span>Show Images</span>
+        </button>
+        <mat-divider></mat-divider>
+    </mat-drawer>
+    <ng-content></ng-content>
+</mat-drawer-container>

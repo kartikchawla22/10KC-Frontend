@@ -1,0 +1,101 @@
+mat-toolbar {
+    background: rgb(24, 23, 23);
+    color: white;
+
+    .name {
+        h2 {
+            font-size: 2em;
+            font-weight: bold;
+            color: silver;
+            letter-spacing: 5px;
+            cursor: pointer;
+            margin: 0;
+        }
+
+        h2 span {
+            transition: 0.5s;
+        }
+
+        h2:hover span:nth-child(1) {
+            margin-right: 10px;
+        }
+
+        h2:hover span:nth-child(2) {
+            margin-left: 40px;
+        }
+
+        h2:hover span {
+            color: red;
+            text-shadow: 0 0 10px red, 0 0 40px red, 0 0 160px red;
+        }
+
+        @media screen and (max-width: 600px) {
+            h2 {
+                font-size: 1em;
+                font-weight: bold;
+                color: silver;
+                letter-spacing: 2.5px;
+                cursor: pointer;
+            }
+
+            h2:hover span:nth-child(1) {
+                margin-right: 5px;
+            }
+
+            h2:hover span:nth-child(2) {
+                margin-left: 20px;
+            }
+        }
+    }
+}
+
+mat-drawer {
+    width: 200px;
+    border-right: none;
+    background: rgb(24, 23, 23);
+    color: white;
+    padding: 16px;
+    text-align: center;
+
+    .profile-picture {
+        margin: 16px 0;
+        width: 100%;
+        border-radius: 50%;
+        filter: grayscale(90%);
+    }
+
+    .name {
+        margin: 16px 0;
+        color: silver;
+    }
+
+    button {
+        margin: 16px 0;
+    }
+
+    mat-divider {
+        margin: 16px 0;
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+}
+
+mat-drawer-container {
+    height: calc(100vh - 65px);
+    background: rgb(35, 34, 34);
+}
+
+.menu-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1rem;
+
+    &.active {
+        color: goldenrod;
+    }
+
+    mat-icon {
+        margin-right: 8px;
+    }
+}

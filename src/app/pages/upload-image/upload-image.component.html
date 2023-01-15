@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="file-drop-container" appDragAndDrop (fileDropped)="fileDropped($event)">
+        <mat-icon>cloud_upload</mat-icon>
+        <input accept="image/jpg, image/jpeg, image/png" id="fileInput" class="form-control" type="file"
+            (change)="onChange($event)" #fileInput />
+        <h3>Drag and Drop Image here</h3>
+        <h2>OR</h2>
+        <label for="fileInput">Browse for local images</label>
+    </div>
+    <div class="files-list" *ngIf="file">
+        <div class="single-file">
+            <mat-icon class="file-icon"> insert_drive_file</mat-icon>
+            <div class="info">
+                <h4 class="name">
+                    {{ file.name }}
+                </h4>
+                <p class="size">
+                    {{ file.size | fileSize }}
+                </p>
+            </div>
+            <mat-icon class="delete-icon" (click)="removeFile()">delete</mat-icon>
+        </div>
+    </div>
+    <button class="upload-button" [disabled]="!file" (click)="onUpload()" color="primary" mat-fab extended
+        aria-label="Delete Image">
+        <mat-icon>upload</mat-icon>
+        Upload
+    </button>
+</div>
