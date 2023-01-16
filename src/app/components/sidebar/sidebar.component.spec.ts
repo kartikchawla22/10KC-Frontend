@@ -1,7 +1,7 @@
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { ComponentFixture, fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed, } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { distinctUntilChanged, filter, from, map, Observable, of, tap } from 'rxjs';
+import { distinctUntilChanged, from, map, Observable } from 'rxjs';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { MaterialModule } from 'src/material.module';
 
@@ -43,7 +43,8 @@ describe('SidebarComponent', () => {
 
   it('should open the sidebar', () => {
     const query = '(max-width: 800px)';
-    bpSpy.observe(query).subscribe((state: BreakpointState) => {
+    bpSpy.observe(query).subscribe(async (state: BreakpointState) => {
+      await fixture.whenStable()
       expect(drawerSpy.open).toHaveBeenCalled()
       expect(drawerSpy.mode).toEqual("side")
     });

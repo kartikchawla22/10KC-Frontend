@@ -4,7 +4,6 @@ import { By } from '@angular/platform-browser';
 import { DragAndDropDirective } from './drag-and-drop.directive';
 
 describe('DragAndDropDirective', () => {
-  let component: TestDnDComponent;
   let fixture: ComponentFixture<TestDnDComponent>;
   let directiveEl: DebugElement;
   let directive: DragAndDropDirective
@@ -12,10 +11,9 @@ describe('DragAndDropDirective', () => {
     TestBed.configureTestingModule({
       declarations: [TestDnDComponent, DragAndDropDirective]
     });
-    fixture = TestBed.createComponent(TestDnDComponent); (2)
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(TestDnDComponent);
     directiveEl = fixture.debugElement.query(By.directive(DragAndDropDirective));
-    directive = directiveEl.injector.get(DragAndDropDirective) as DragAndDropDirective;
+    directive = directiveEl.injector.get(DragAndDropDirective);
     fixture.detectChanges();
   });
   it('should create an instance', () => {

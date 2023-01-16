@@ -18,14 +18,16 @@ export class UploadImageComponent {
   constructor(private _httpService: HttpService, private _cd: ChangeDetectorRef, private _notificationService: NotificationService) { }
 
   onChange(event: Event): void {
+
     const target: HTMLInputElement = event.target as HTMLInputElement
+    console.log(target.files, "event");
 
     if (target.files && this.acceptedFileTypes.indexOf(target.files[0].type) > -1) {
       this.file = target.files[0];
     } else if (target.files && this.acceptedFileTypes.indexOf(target.files[0].type) === -1) {
       this._notificationService.openSnackBar("Only png, jpg and jpeg is allowed")
     }
-    this.fileInput.value = this.file!.name
+    this.fileInput.value = this.file?.name || ""
     this._cd.detectChanges()
 
   }
