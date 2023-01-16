@@ -33,3 +33,6 @@ export interface UploadImageResponseType {
         imageName: string
     }
 }
+export interface ConfrimationDialogueType {
+    imageId: number
+}

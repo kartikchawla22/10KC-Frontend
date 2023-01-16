@@ -16,6 +16,7 @@ import { DragAndDropDirective } from './directives/drag-and-drop.directive';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ApiInterceptorService } from './services/api-interceptor/api-interceptor.service';
+import { ConfirmationDialogueComponent } from './components/confirmation-dialogue/confirmation-dialogue.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ApiInterceptorService } from './services/api-interceptor/api-intercepto
     FileSizePipe,
     DragAndDropDirective,
     SnackbarComponent,
-    LoaderComponent
+    LoaderComponent,
+    ConfirmationDialogueComponent
   ],
   imports: [
     BrowserModule,

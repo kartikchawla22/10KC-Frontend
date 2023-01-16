@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog } from '@angular/material/dialog';
 import { of } from 'rxjs';
 import { HttpService } from 'src/app/services/http/http.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -10,7 +11,10 @@ describe('ShowImagesComponent', () => {
   let component: ShowImagesComponent;
   let fixture: ComponentFixture<ShowImagesComponent>;
   const notificationSerivceSpy = jasmine.createSpyObj('NotificationService', ['openSnackBar']);
-  const httpServiceSpy = jasmine.createSpyObj('NotificationService', {
+  let dialogAfterCloseData = { selection: true, imageId: 12 }
+  let dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of(dialogAfterCloseData), close: null });
+  let dialogSpy: jasmine.Spy
+  const httpServiceSpy = jasmine.createSpyObj('HttpService', {
     getAllImages: of(
       [{
         contentType: "image/jpg",
@@ -41,6 +45,8 @@ describe('ShowImagesComponent', () => {
     fixture = TestBed.createComponent(ShowImagesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    dialogSpy = spyOn(TestBed.inject(MatDialog), 'open').and.returnValue(dialogRefSpyObj);
+
   });
 
   it('should create', () => {
@@ -50,29 +56,18 @@ describe('ShowImagesComponent', () => {
     component.ngOnInit()
     expect(httpServiceSpy.getAllImages).toHaveBeenCalled()
   });
-  // fit('should call deleteImage ApI', () => {
-  //   component.ngOnInit()
-  //   fixture.detectChanges()
-  //   const deleteButton = fixture.debugElement.nativeElement.querySelector(".delete-block") as HTMLButtonElement
-  //   expect(deleteButton).toBeTruthy()
-  //   deleteButton.click()
-  //   const confirmSpy = spyOn(window, 'confirm').withArgs("Are you sure?").and.callFake(function () {
-  //     return true;
-  //   });
-  //   expect(confirmSpy).toHaveBeenCalledWith("Are you sure?");
-  //   expect(httpServiceSpy.deleteImage).toHaveBeenCalledWith(12)
-  // });
 
-  // fit('should not call deleteImage ApI', () => {
-  //   component.ngOnInit()
-  //   fixture.detectChanges()
-  //   const deleteButton = fixture.debugElement.nativeElement.querySelector(".delete-block") as HTMLButtonElement
-  //   expect(deleteButton).toBeTruthy()
-  //   deleteButton.click()
-  //   const confirmSpy = spyOn(window, 'confirm').and.callFake(function () {
-  //     return false;
-  //   });
-  //   expect(confirmSpy).toHaveBeenCalledWith("Are you sure?");
-  //   expect(httpServiceSpy.deleteImage).not.toHaveBeenCalled()
-  // });
+  it('should call deleteImage ApI', () => {
+    component.ngOnInit()
+    dialogAfterCloseData.selection = true
+    dialogAfterCloseData.imageId = 12
+    fixture.detectChanges()
+    const deleteButton = fixture.debugElement.nativeElement.querySelector(".delete-block") as HTMLButtonElement
+    expect(deleteButton).toBeTruthy()
+
+    deleteButton.click()
+    expect(dialogSpy).toHaveBeenCalled();
+    expect(httpServiceSpy.deleteImage).toHaveBeenCalledWith(12)
+    expect(notificationSerivceSpy.openSnackBar).toHaveBeenCalledWith("Image Deleted Successfully!")
+  });
 });

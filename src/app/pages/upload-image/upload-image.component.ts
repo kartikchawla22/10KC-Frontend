@@ -18,10 +18,7 @@ export class UploadImageComponent {
   constructor(private _httpService: HttpService, private _cd: ChangeDetectorRef, private _notificationService: NotificationService) { }
 
   onChange(event: Event): void {
-
     const target: HTMLInputElement = event.target as HTMLInputElement
-    console.log(target.files, "event");
-
     if (target.files && this.acceptedFileTypes.indexOf(target.files[0].type) > -1) {
       this.file = target.files[0];
     } else if (target.files && this.acceptedFileTypes.indexOf(target.files[0].type) === -1) {
@@ -29,8 +26,8 @@ export class UploadImageComponent {
     }
     this.fileInput.value = this.file?.name || ""
     this._cd.detectChanges()
-
   }
+
   onUpload(): void {
     this._httpService.uploadImage(this.file as File).pipe(take(1)).subscribe(() => {
       this.file = null
@@ -38,11 +35,13 @@ export class UploadImageComponent {
       this._cd.detectChanges()
     });
   }
+
   removeFile(): void {
     this.file = null
     this.fileInput.value = ""
     this._cd.detectChanges()
   }
+
   fileDropped(file: File): void {
     if (file && this.acceptedFileTypes.indexOf(file.type) > -1) {
       this.file = file

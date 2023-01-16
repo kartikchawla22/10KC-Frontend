@@ -33,6 +33,7 @@ describe('SidebarComponent', () => {
     fixture = TestBed.createComponent(SidebarComponent);
     component = fixture.componentInstance;
     component.drawer = drawerSpy
+    mockObj = { matchStr: '(max-width: 800px)', result: false }
     component.ngAfterViewInit()
     fixture.detectChanges();
   });
