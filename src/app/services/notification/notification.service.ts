@@ -6,6 +6,7 @@ import { SnackbarComponent } from 'src/app/components/snackbar/snackbar.componen
   providedIn: 'root'
 })
 export class NotificationService {
+
   private readonly _horizontalPosition: MatSnackBarHorizontalPosition = 'right';
   private readonly _verticalPosition: MatSnackBarVerticalPosition = 'top';
   private readonly _duration: number = 3000

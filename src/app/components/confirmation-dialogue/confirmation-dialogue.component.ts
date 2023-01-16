@@ -8,13 +8,14 @@ import { ConfrimationDialogueType } from 'src/app/utils/types';
   templateUrl: './confirmation-dialogue.component.html'
 })
 export class ConfirmationDialogueComponent {
+
   constructor(private _dialogRef: MatDialogRef<ConfirmationDialogueComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ConfrimationDialogueType) {
+    @Inject(MAT_DIALOG_DATA) private _data: ConfrimationDialogueType) {
   }
 
   onConfirm(): void {
     // Close the dialog, return true
-    this._dialogRef.close({ selection: true, imageId: this.data.imageId });
+    this._dialogRef.close({ selection: true, imageId: this._data.imageId });
   }
 
   onDismiss(): void {

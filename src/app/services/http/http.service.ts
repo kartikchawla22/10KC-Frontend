@@ -8,6 +8,7 @@ import { ImagesDataType, ImagesType, DeleteImageResponseType, DeleteImageRespons
 })
 
 export class HttpService {
+
   private readonly _baseURL = "http://localhost:8000/api/v1"
 
   constructor(private _http: HttpClient) { }

@@ -11,6 +11,7 @@ import { NotificationDataType } from 'src/app/utils/types';
   styleUrls: ['./snackbar.component.scss']
 })
 export class SnackbarComponent {
+
   constructor(private _snackBar: MatSnackBar, @Inject(MAT_SNACK_BAR_DATA) public data: NotificationDataType) { }
 
   closeSnackBar(): void {

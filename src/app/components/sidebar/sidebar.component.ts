@@ -8,7 +8,9 @@ import { MatSidenav } from '@angular/material/sidenav';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements AfterViewInit {
+
   @ViewChild('drawer') drawer!: MatSidenav;
+
   constructor(private _breakpointObserver$: BreakpointObserver, private _cd: ChangeDetectorRef) { }
 
   ngAfterViewInit(): void {

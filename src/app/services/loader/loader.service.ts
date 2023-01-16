@@ -11,6 +11,7 @@ export class LoaderService {
   showLoader(): void {
     this.isLoader$.next(true)
   }
+
   hideLoader(): void {
     this.isLoader$.next(false)
   }

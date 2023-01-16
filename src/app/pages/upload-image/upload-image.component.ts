@@ -10,8 +10,9 @@ import { HttpService } from '../../services/http/http.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UploadImageComponent {
-  file: File | null = null
+
   @ViewChild("fileInput") fileInput!: HTMLInputElement
+  file: File | null = null
 
   private readonly acceptedFileTypes: Array<string> = ["image/jpg", "image/jpeg", "image/png"]
 
