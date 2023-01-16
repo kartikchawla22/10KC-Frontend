@@ -8,9 +8,9 @@ describe('FooterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FooterComponent ]
+      declarations: [FooterComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(FooterComponent);
     component = fixture.componentInstance;
@@ -20,4 +20,8 @@ describe('FooterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it("should show brand name and copyright text", () => {
+    expect(fixture.debugElement.nativeElement.querySelector(".brand p").innerHTML).toContain("10 Thousand Coffees")
+    expect(fixture.debugElement.nativeElement.querySelector(".footer_container > p").innerHTML).toContain("Kartik Chawla © 2023 All Rights Reserved.")
+  })
 });

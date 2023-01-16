@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
 
@@ -9,7 +9,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class SidebarComponent implements AfterViewInit {
   @ViewChild('drawer') drawer!: MatSidenav;
-  constructor(private _breakpointObserver$: BreakpointObserver) { }
+  constructor(private _breakpointObserver$: BreakpointObserver, private _cd: ChangeDetectorRef) { }
 
   ngAfterViewInit(): void {
     this._breakpointObserver$.observe(['(max-width: 800px)']).subscribe((res: BreakpointState) => {
@@ -21,5 +21,6 @@ export class SidebarComponent implements AfterViewInit {
         this.drawer.open();
       }
     });
+    this._cd.detectChanges()
   }
 }
