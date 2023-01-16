@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, '../../coverage/ten-kcfrontend'),
+      dir: require('path').join(__dirname, './coverage/ten-kcfrontend'),
       subdir: '.',
       reporters: [{ type: 'html' }, { type: 'lcov', subdir: 'report-lcov' }, { type: 'text-summary' }]
     },

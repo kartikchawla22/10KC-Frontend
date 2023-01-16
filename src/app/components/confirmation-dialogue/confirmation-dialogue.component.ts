@@ -5,8 +5,7 @@ import { ConfrimationDialogueType } from 'src/app/utils/types';
 
 @Component({
   selector: 'app-confirmation-dialogue',
-  templateUrl: './confirmation-dialogue.component.html',
-  styleUrls: ['./confirmation-dialogue.component.scss']
+  templateUrl: './confirmation-dialogue.component.html'
 })
 export class ConfirmationDialogueComponent {
   constructor(private _dialogRef: MatDialogRef<ConfirmationDialogueComponent>,
