@@ -1,12 +1,12 @@
-export interface NotificationDataType {
+export interface Notification {
     message: string
 }
 
-export interface ImagesType {
-    data: Array<ImagesDataType>
+export interface ImageList {
+    data: Array<ImageData>
 }
 
-export interface ImagesDataType {
+export interface ImageData {
     contentType: string
     imageBuffer: string
     imageId: number
@@ -14,7 +14,7 @@ export interface ImagesDataType {
     uploadTime: string
 }
 
-export interface DeleteImageResponseDataType {
+export interface DeleteImageResponse {
     deletedImage: {
         acknowledged: boolean,
         deletedCount: number
@@ -23,16 +23,16 @@ export interface DeleteImageResponseDataType {
 }
 
 export interface DeleteImageResponseType {
-    data: DeleteImageResponseDataType,
+    data: DeleteImageResponse,
     message: string
 }
 
-export interface UploadImageResponseType {
+export interface UploadImageResponse {
     data: {
         imageId: number,
         imageName: string
     }
 }
-export interface ConfrimationDialogueType {
+export interface DeleteConfirmation {
     imageId: number
 }

@@ -10,18 +10,21 @@ export class ApiInterceptorService implements HttpInterceptor {
   constructor(private _loaderService: LoaderService, private _notificationService: NotificationService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    this._loaderService.showLoader()
+    this._loaderService.showLoader();
 
-    return next.handle(request).pipe(catchError(({ error }: { [key: string]: any }) => {
-      this._notificationService.openSnackBar(error.error ? error.error : "Something went wrong!")
-      this._loaderService.hideLoader()
-      return of(error)
-    }))
-      .pipe(map<HttpEvent<any>, any>((evt: HttpEvent<any>) => {
-        if (evt instanceof HttpResponse) {
-          this._loaderService.hideLoader()
-        }
-        return evt;
-      }))
+    return next.handle(request)
+      .pipe(
+        catchError(({ error }) => {
+          this._notificationService.openSnackBar(error?.error ?? "Something went wrong!");
+          this._loaderService.hideLoader();
+          return of(error);
+        }),
+        map(evt => {
+          if (evt instanceof HttpResponse) {
+            this._loaderService.hideLoader();
+          }
+          return evt;
+        })
+      );
   }
 }

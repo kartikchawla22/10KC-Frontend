@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { take } from 'rxjs';
 import { ConfirmationDialogueComponent } from 'src/app/components/confirmation-dialogue/confirmation-dialogue.component';
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { DeleteImageResponseDataType, ImagesDataType } from 'src/app/utils/types';
+import { DeleteImageResponse, ImageData } from 'src/app/utils/types';
 import { HttpService } from '../../services/http/http.service';
 
 @Component({
@@ -13,12 +13,12 @@ import { HttpService } from '../../services/http/http.service';
 })
 export class ShowImagesComponent implements OnInit {
 
-  images: Array<ImagesDataType> = []
+  images: Array<ImageData> = []
 
   constructor(private _dialog: MatDialog, private _httpService: HttpService, private _notificationService: NotificationService) { }
 
   ngOnInit(): void {
-    this._httpService.getAllImages().pipe(take(1)).subscribe((data: ImagesDataType[]) => {
+    this._httpService.getAllImages().pipe(take(1)).subscribe((data: ImageData[]) => {
       this.images = data
     })
   }
@@ -30,7 +30,7 @@ export class ShowImagesComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((dialogueClose) => {
       if (dialogueClose.selection) {
-        this._httpService.deleteImage(dialogueClose.imageId).pipe(take(1)).subscribe((res: DeleteImageResponseDataType) => {
+        this._httpService.deleteImage(dialogueClose.imageId).pipe(take(1)).subscribe((res: DeleteImageResponse) => {
           this.images = this.images.filter(image => image.imageId !== res.imageId)
           this._notificationService.openSnackBar("Image Deleted Successfully!")
         })

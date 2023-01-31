@@ -14,5 +14,4 @@ export class FileSizePipe implements PipeTransform {
     const i = Math.floor(Math.log(value) / Math.log(k));
     return parseFloat((value / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
   }
-
 }

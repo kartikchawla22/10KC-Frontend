@@ -6,13 +6,17 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class LoaderService {
 
-  isLoader$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
+  private _isLoader$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+  get isLoader$(): BehaviorSubject<boolean> {
+    return this._isLoader$;
+  }
 
   showLoader(): void {
-    this.isLoader$.next(true)
+    this._isLoader$.next(true);
   }
 
   hideLoader(): void {
-    this.isLoader$.next(false)
+    this._isLoader$.next(false);
   }
 }

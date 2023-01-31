@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ConfrimationDialogueType } from 'src/app/utils/types';
+import { DeleteConfirmation } from 'src/app/utils/types';
 
 
 @Component({
@@ -10,7 +10,7 @@ import { ConfrimationDialogueType } from 'src/app/utils/types';
 export class ConfirmationDialogueComponent {
 
   constructor(private _dialogRef: MatDialogRef<ConfirmationDialogueComponent>,
-    @Inject(MAT_DIALOG_DATA) private _data: ConfrimationDialogueType) {
+    @Inject(MAT_DIALOG_DATA) private _data: DeleteConfirmation) {
   }
 
   onConfirm(): void {

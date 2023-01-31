@@ -3,7 +3,7 @@ import {
   MatSnackBar,
   MAT_SNACK_BAR_DATA,
 } from '@angular/material/snack-bar';
-import { NotificationDataType } from 'src/app/utils/types';
+import { Notification } from 'src/app/utils/types';
 
 @Component({
   selector: 'app-snackbar',
@@ -12,7 +12,7 @@ import { NotificationDataType } from 'src/app/utils/types';
 })
 export class SnackbarComponent {
 
-  constructor(private _snackBar: MatSnackBar, @Inject(MAT_SNACK_BAR_DATA) public data: NotificationDataType) { }
+  constructor(private _snackBar: MatSnackBar, @Inject(MAT_SNACK_BAR_DATA) public data: Notification) { }
 
   closeSnackBar(): void {
     this._snackBar.dismiss()
